@@ -1,0 +1,6 @@
+export DEBUG=True
+export SECRET_KEY = <you_django_secret_key>
+export DB_NAME = <you_database_name>
+export DB_USER= <your_database_user>
+export DB_PASSWORD = <your_database_password>
+export DB_HOST = <database_host>
