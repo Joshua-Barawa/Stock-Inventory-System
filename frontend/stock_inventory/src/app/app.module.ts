@@ -6,9 +6,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 
 @NgModule({
   declarations: [
-    AdminDashboardComponent,
     AppComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule
