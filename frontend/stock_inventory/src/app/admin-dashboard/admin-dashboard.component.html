@@ -1,54 +1,107 @@
 <!-- Top four cards code begins here-->
 
-<div class="all-content container mt-5">
+<!-- <div class="all-content container-fluid mt-5"> -->
 
-    <div class="row pt-5">
-        <div class="col-md-3">
-            <div class="card card-outline bg-light shadow ">
-                <p class="text-bold text-center text-muted h4 p-5">Clerks <br> <span class=" fs-1 fw-bold  py-4">24</span></p>
-            </div>
-        </div>
+<!-- <div class="row">
+        <div class="col-md"> -->
+<div class="p-3">
+    <mat-toolbar class="mat-elevation-z8">
+        <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+                  <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+                  <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+                </button> <span class="p-4">Dashboard</span>
+    </mat-toolbar>
+    .</div>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+
+        <h4 class="name">John Smith</h4>
+        <p class="designation">Software Engineer</p>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/home">
+                    <mat-icon>home</mat-icon>
+                    <span>Home</span>
+                  </button>
+        <button mat-button class="menu-button" routerLink="/profile">
+                    <mat-icon>person</mat-icon>
+                    <span>Profile</span>
+                  </button>
+        <button mat-button class="menu-button" routerLink="/about">
+                    <mat-icon>info</mat-icon>
+                    <span>About</span>
+                  </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/help">
+                    <mat-icon>help</mat-icon>
+                    <span>Help</span>
+                  </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <!-- <router-outlet></router-outlet> -->
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row pt-2">
+                            <div class="col-md-3">
+                                <div class="card card-outline bg-light shadow mb-3 ">
+                                    <p class="text-bold text-center text-muted h4 p-5">Clerks <br> <span class=" fs-1 fw-bold  py-4">24</span></p>
+                                </div>
+                            </div>
 
 
 
-        <div class="col-md-3">
-            <div class="card bg-light shadow">
-                <p class="text-bold text-center text-muted h4 p-5">Order <br> <span class=" fs-1 fw-bold  py-4">12</span></p>
-            </div>
-        </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light shadow mb-3">
+                                    <p class="text-bold text-center text-muted h4 p-5">Order <br> <span class=" fs-1 fw-bold  py-4">12</span></p>
+                                </div>
+                            </div>
 
-        <div class="col-md-3">
-            <div class="card bg-light shadow">
-                <p class="text-bold text-center text-muted h4 p-5">Payment <br> <span class=" fs-1 fw-bold  py-4">300</span></p>
-            </div>
-        </div>
+                            <div class="col-md-3">
+                                <div class="card bg-light shadow mb-3">
+                                    <p class="text-bold text-center text-muted h4 p-5">Payment <br> <span class=" fs-1 fw-bold  py-4">300</span></p>
+                                </div>
+                            </div>
 
-        <div class="col-md-3">
-            <div class="card bg-light shadow">
-                <p class="text-bold text-center text-muted h4 p-5">Pending Payments <br> <span class=" fs-1 fw-bold  py-4">3</span></p>
+                            <div class="col-md-3">
+                                <div class="card bg-light shadow mb-3">
+                                    <p class="text-bold text-center text-muted h4 p-5">Pending Payments <br> <span class=" fs-1 fw-bold  py-4">3</span></p>
 
-            </div>
-        </div>
+                                </div>
+                            </div>
 
-    </div>
+                        </div>
 
-    <!-- Top four cards code ends here-->
+                        <!-- Top four cards code ends here-->
 
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <div class="card linear-graph">
+                        <div class="row mt-5">
+                            <div class="col-md-7">
+                                <div class="card linear-graph">
 
-                <div>
-                    <canvas id="myChart" width="400" height="400"></canvas>
+                                    <div>
+                                        <canvas id="myChart" width="600" height="400"></canvas>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-5 mt-5">
+                                <div class="card linear-graph">
+                                    <div>
+                                        <canvas id="mChart" width="300" height="250"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
-        <div class="col-md-6"></div>
-    </div>
-
-
-
-
-
-</div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
