@@ -7,12 +7,13 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ['full_name', 'username', 'email', 'business', 'password', 'password2']
+        fields = ['full_name', 'username', 'email', 'business', 'avatar', 'password', 'password2']
         read_only_fields = ('password2',)
 
     def save(self):
         account = Account(email=self.validated_data['email'], username=self.validated_data['username'],
-                          full_name=self.validated_data['full_name'], business=self.validated_data['business'])
+                          full_name=self.validated_data['full_name'], business=self.validated_data['business'],
+                          avatar=self.validated_data['avatar'])
 
         password = self.validated_data['password']
         password2 = self.validated_data['password2']

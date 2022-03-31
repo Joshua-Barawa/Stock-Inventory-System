@@ -1,6 +1,16 @@
 export DEBUG=True
 export SECRET_KEY = <you_django_secret_key>
+
 export DB_NAME = <you_database_name>
 export DB_USER= <your_database_user>
 export DB_PASSWORD = <your_database_password>
 export DB_HOST = <database_host>
+
+export EMAIL_HOST= smtp.gmail.com
+export EMAIL_HOST_USER=<your_email_address>
+export EMAIL_HOST_PASSWORD=<your_email_password>
+export EMAIL_PORT=587
+
+export CLOUD_NAME=<your_cloud_name>
+export API_KEY=<your_cloud_api_key>
+export API_SECRET=<your_cloud_api_secret>
