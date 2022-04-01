@@ -9,7 +9,6 @@ from django.contrib.auth import authenticate
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from .utils import Util
-from drf_yasg.utils import swagger_auto_schema
 
 
 @api_view(['POST'])
@@ -109,5 +108,4 @@ def view_clerks(request):
     name = request.user.full_name
     clerks = Account.objects.filter(admin_name=name)
     serializer = AccountSerializer(clerks, many=True)
-
     return Response(serializer.data)
