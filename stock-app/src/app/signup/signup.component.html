@@ -1,0 +1,43 @@
+<div class="container" >
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Signup</h1>
+                </div>
+                <form> 
+                    <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Username</label>
+                            <input  formControlName= "username" type="text" class="form-control" id="exampleFormControlInput1" placeholder="username">
+                          </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">FullName</label>
+                            <input  formControlName= "fullname"type="text" class="form-control" id="exampleFormControlInput1" placeholder="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input  formControlName= "email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text"></div>
+                          </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Business Name</label>
+                            <input  formControlName= "businessname"type="text" class="form-control" id="exampleFormControlInput1" placeholder="business name">
+                          </div>
+                        
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input  formControlName= "password"type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                            <input formControlName= "confirmpassword" type="password" class="form-control" id="exampleInputPassword2">
+                          </div>
+                        <button type="submit" class="btn btn-primary">Signup</button>
+                      </form>
+                      <a routerLink="/login">Already Registered? Click to Login!</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
