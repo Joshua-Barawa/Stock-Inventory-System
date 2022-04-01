@@ -2,76 +2,66 @@
     <div class="container mt-3 text-center">
       <h1>Items Tracker</h1>
       <p>Click to request for supply.</p>
-      
+
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
         Request
       </button>
     </div>
-    
+
     <!-- The Modal -->
     <div class="modal" id="myModal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-    
+
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">Items Request Form</h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
-    
+
           <!-- Modal body -->
-         
+
           <form action="post" class="text-center border border-light p-5">
-  
+
             <div class="container">
-            <div class="form-row mb-4">
-              <div class="col">
-                
-                <input type="text" id="customer" class="form-control" placeholder="Customer" required>
+              <div class="form-row mb-4">
+                <div class="col">
+
+                  <input type="text" id="supplier" class="form-control" placeholder="Supplier Name" required>
+                </div>
+                <div class="col">
+
+                  <input type="email" id="email" class="form-control" placeholder="Supplier Return to (Email)" required>
+                </div>
               </div>
-              <div class="col">
-               
-                <input type="email" id="email" class="form-control" placeholder="Return to (Email)" required>
+
+              <div class="form-row mb-4">
+                <div class="col">
+
+                  <input type="date" id="date" class="form-control" placeholder="Date Needed" required>
+                </div>
+                <div class="col">
+                  <!-- Item(s) Needed -->
+                  <input type="text" id="items_needed" class="form-control" placeholder="Item(s) Needed" required>
+                </div>
               </div>
-            </div>
-          
-            <div class="form-row mb-4">
-              <div class="col">
-                
-                <input type="date" id="date" class="form-control" placeholder="Date Needed" required>
+
+              <div class="form-row mb-4">
+                <div class="col">
+
+                  <input type="text" id="quantity" class="form-control" placeholder="Quantity" required>
+                </div>
+
               </div>
-              <div class="col">
-                <!-- Item(s) Needed -->
-                <input type="text" id="items_needed" class="form-control" placeholder="Item(s) Needed" required>
-              </div>
-            </div>
-          
-            <div class="form-row mb-4">
-              <div class="col">
-                <!-- Quantity -->
-                <input type="text" id="quantity" class="form-control" placeholder="Quantity" required>
-              </div>
-          
-              <div class="col">
-                <!-- Unit of Measure -->
-                <input type="text" id="Unit" class="form-control" placeholder="Unit of Measure" required>
-              </div>
+
+              <hr>
 
             </div>
 
-            <div class="col mb-3">
-              <label for="additional information" class="form-label">Additional Information</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-          
-            <hr>
-          
-          </div>
-          
           </form>
 
           <!-- Modal body -->
-    
+
           <!-- Modal footer -->
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
@@ -80,58 +70,58 @@
           </div>
 
           <div class="modal-footer">
-           
+
           </div>
-    
+
         </div>
       </div>
-        </div>
+    </div>
     <!-- End of Request Modal-->
 
-<form action="post" class="text-center border border-light p-5">
-  
-  <div class="container">
-  <div class="form-row mb-4">
-    <div class="col">
-      <!-- Items Received -->
-      <input type="number" id="items_received" class="form-control" placeholder="Items Received (No)" required>
-    </div>
-    <div class="col">
-      <!-- Items in Stock -->
-      <input type="number" id="items_in_stock" class="form-control" placeholder="Items in Stock (No)" required>
-    </div>
-  </div>
+    <form action="post" class="text-center border border-light p-5">
 
-  <div class="form-row mb-4">
-    <div class="col">
-      <!-- Payment Status -->
-      <input type="number" id="payment_status" class="form-control" placeholder="Payment Status" required>
-    </div>
-    <div class="col">
-      <!-- Number of Items Spoiled -->
-      <input type="number" id="items_spoiled" class="form-control" placeholder="Items Spoiled (No)" required>
-    </div>
-  </div>
+      <div class="container">
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Items Received -->
+            <input type="number" id="items_received" class="form-control" placeholder="Items Received (No)" required>
+          </div>
+          <div class="col">
+            <!-- Items in Stock -->
+            <input type="number" id="items_in_stock" class="form-control" placeholder="Items in Stock (No)" required>
+          </div>
+        </div>
 
-  <div class="form-row mb-4">
-    <div class="col">
-      <!-- Buying Price -->
-      <input type="number" id="buying_price" class="form-control" placeholder="Buying Price" required>
-    </div>
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Payment Status -->
+            <input type="number" id="payment_status" class="form-control" placeholder="Payment Status" required>
+          </div>
+          <div class="col">
+            <!-- Number of Items Spoiled -->
+            <input type="number" id="items_spoiled" class="form-control" placeholder="Items Spoiled (No)" required>
+          </div>
+        </div>
 
-    <div class="col">
-      <!-- Selling Price -->
-      <input type="number" id="selling_price" class="form-control" placeholder="Selling Price" required>
-    </div>
-  </div>
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Buying Price -->
+            <input type="number" id="buying_price" class="form-control" placeholder="Buying Price" required>
+          </div>
 
-  <!-- Save Button -->
-  <button type="submit" class="btn btn-primary">Save</button>
+          <div class="col">
+            <!-- Selling Price -->
+            <input type="number" id="selling_price" class="form-control" placeholder="Selling Price" required>
+          </div>
+        </div>
 
-  <hr>
+        <!-- Save Button -->
+        <button type="submit" class="btn btn-primary">Save</button>
 
-</div>
+        <hr>
 
-</form>
+      </div>
 
-<router-outlet></router-outlet>
+    </form>
+
+    <router-outlet></router-outlet>
