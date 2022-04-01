@@ -37,14 +37,16 @@ def register_user(request):
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny, ])
+@permission_classes([IsAuthenticated, ])
 def register_clerk(request):
+    name = request.user.full_name
     if request.method == 'POST':
         acc_serializer = AccountSerializer(data=request.data)
         data = {}
         if acc_serializer.is_valid(raise_exception=True):
             user = acc_serializer.save()
             user.is_active = True
+            user.admin_name = name
             user.save()
             token, created = Token.objects.get_or_create(user=user)
             data['res'] = "Clerk added successfully"
@@ -102,10 +104,10 @@ def logout_user(request):
 
 
 @api_view(['GET'])
-@permission_classes([AllowAny, ])
+@permission_classes([IsAuthenticated, ])
 def view_clerks(request):
-
-    clerks = Account.objects.filter(is_admin=False)
+    name = request.user.full_name
+    clerks = Account.objects.filter(admin_name=name)
     serializer = AccountSerializer(clerks, many=True)
 
     return Response(serializer.data)
