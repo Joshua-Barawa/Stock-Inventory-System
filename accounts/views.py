@@ -15,7 +15,6 @@ from drf_yasg.utils import swagger_auto_schema
 @api_view(['POST'])
 @permission_classes([AllowAny, ])
 def register_user(request):
-
     if request.method == 'POST':
         acc_serializer = AccountSerializer(data=request.data)
         if acc_serializer.is_valid(raise_exception=True):
@@ -31,6 +30,24 @@ def register_user(request):
             Util.send_email(data)
             data['res'] = "Account created successfully.....A link has been sent to your email \n " \
                           "Use it to verify your account"
+            data['token'] = token.key
+        else:
+            data = acc_serializer.errors
+    return Response(data)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny, ])
+def register_clerk(request):
+    if request.method == 'POST':
+        acc_serializer = AccountSerializer(data=request.data)
+        data = {}
+        if acc_serializer.is_valid(raise_exception=True):
+            user = acc_serializer.save()
+            user.is_active = True
+            user.save()
+            token, created = Token.objects.get_or_create(user=user)
+            data['res'] = "Clerk added successfully"
             data['token'] = token.key
         else:
             data = acc_serializer.errors
@@ -82,3 +99,13 @@ def logout_user(request):
     logout(request)
     data = "logged out successfully"
     return Response(data)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny, ])
+def view_clerks(request):
+
+    clerks = Account.objects.filter(is_admin=False)
+    serializer = AccountSerializer(clerks, many=True)
+
+    return Response(serializer.data)

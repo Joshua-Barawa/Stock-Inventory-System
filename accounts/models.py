@@ -27,6 +27,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=200, unique=True, blank=False, null=False)
     business = models.CharField(max_length=250, blank=True, null=True)
     avatar = CloudinaryField('image', null=True)
+    admin_name = models.CharField(max_length=250, null=True, blank=True)
     password = models.CharField(max_length=300)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -43,4 +44,3 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return str(self.username)
-
