@@ -107,3 +107,57 @@ def view_clerks(request):
     clerks = Account.objects.filter(admin_name=name)
     serializer = AccountSerializer(clerks, many=True)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated, ])
+def inactivate_clerk(request, id):
+    data = {}
+    user = request.user
+    try:
+        if user.is_admin:
+            account = Account.objects.get(id=id)
+            account.status = False
+            account.save()
+            data['status'] = 'Clerk was deactivated!'
+        else:
+            data['authorization'] = 'You have to be an admin to perform this request!'
+
+    except ObjectDoesNotExist:
+        data['error'] = 'Clerk does not exist!'
+    return Response(data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated, ])
+def activate_clerk(request, id):
+    data = {}
+    user = request.user
+    try:
+        if user.is_admin:
+            account = Account.objects.get(id=id)
+            account.status = True
+            account.save()
+            data['status'] = 'Clerk was activated!'
+        else:
+            data['authorization'] = 'You have to be an admin to perform this request!'
+
+    except ObjectDoesNotExist:
+        data['error'] = 'Clerk does not exist!'
+    return Response(data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated, ])
+def delete_clerk(request, id):
+    data = {}
+    user = request.user
+    try:
+        if user.is_admin:
+            account = Account.objects.get(id=id).delete()
+            data['status'] = 'Clerk was deleted!'
+        else:
+            data['authorization'] = 'You have to be an admin to perform this request!'
+    except ObjectDoesNotExist:
+        data['error'] = 'Clerk does not exist!'
+    return Response(data)

@@ -51,12 +51,15 @@ def unpaid_products(request):
 @permission_classes([IsAuthenticated])
 def change_payment_status(request, id):
     data = {}
+    user = request.user
     try:
         product = Product.objects.get(id=id)
-        if request.method == 'POST':
+        if user.is_admin:
             product.status = True
             product.save()
             data['status'] = 'Payment status was changed to paid!'
+        else:
+            data['authorization'] = 'You have to be an admin to perform this request!'
     except ObjectDoesNotExist:
         data['error'] = 'Request does not exist!'
     return Response(data)
@@ -81,12 +84,15 @@ def make_request(request):
 @permission_classes([IsAuthenticated])
 def approve_request(request, id):
     data = {}
+    user = request.user
     try:
         p_request = Request.objects.get(id=id)
-        if request.method == 'POST':
+        if user.is_admin:
             p_request.status = True
             p_request.save()
             data['status'] = 'Product request was approved!'
+        else:
+            data['authorization'] = 'You have to be an admin to perform this request!'
     except ObjectDoesNotExist:
         data['error'] = 'Request does not exist!'
     return Response(data)
@@ -96,9 +102,13 @@ def approve_request(request, id):
 @permission_classes([IsAuthenticated])
 def decline_request(request, id):
     data = {}
+    user = request.user
     try:
-        Request.objects.get(id=id).delete()
-        data['status'] = 'Product request was declined!'
+        if user.is_admin:
+            Request.objects.get(id=id).delete()
+            data['status'] = 'Product request was declined!'
+        else:
+            data['authorization'] = 'You have to be an admin to perform this request!'
     except ObjectDoesNotExist:
         data['error'] = 'cannot decline request!'
     return Response(data)
