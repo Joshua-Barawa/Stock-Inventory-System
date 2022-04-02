@@ -23,6 +23,45 @@ def add_product(request):
     return Response(data)
 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def paid_products(request):
+    data = {}
+    try:
+        products = Product.objects.filter(status=True)
+        s_products = ProductSerializer(products, many=True)
+    except ObjectDoesNotExist:
+        data['error'] = 'cannot decline request!'
+    return Response(s_products.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def unpaid_products(request):
+    data = {}
+    try:
+        products = Product.objects.filter(status=False)
+        s_products = ProductSerializer(products, many=True)
+    except ObjectDoesNotExist:
+        data['error'] = 'cannot decline request!'
+    return Response(s_products.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def change_payment_status(request, id):
+    data = {}
+    try:
+        product = Product.objects.get(id=id)
+        if request.method == 'POST':
+            product.status = True
+            product.save()
+            data['status'] = 'Payment status was changed to paid!'
+    except ObjectDoesNotExist:
+        data['error'] = 'Request does not exist!'
+    return Response(data)
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def make_request(request):
