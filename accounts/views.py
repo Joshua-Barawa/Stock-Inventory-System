@@ -47,9 +47,7 @@ def register_clerk(request):
             user.is_active = True
             user.admin_name = name
             user.save()
-            token, created = Token.objects.get_or_create(user=user)
             data['res'] = "Clerk added successfully"
-            data['token'] = token.key
         else:
             data = acc_serializer.errors
     return Response(data)

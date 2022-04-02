@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'cloudinary',
     'accounts.apps.AccountsConfig',
+    'products',
     'drf_yasg',
     'corsheaders',
 ]
