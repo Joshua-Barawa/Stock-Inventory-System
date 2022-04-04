@@ -25,13 +25,26 @@
                                 <mat-icon>home</mat-icon>
                                 <span>Home</span>
                               </button>
-        <button mat-button class="menu-button" routerLink="/profile">
+
+        <button mat-button class="menu-button" routerLink="/clerk">
                                 <mat-icon>person</mat-icon>
-                                <span>Profile</span>
+                                <span>Admins</span>
                               </button>
         <button mat-button class="menu-button" routerLink="/about">
                                 <mat-icon>info</mat-icon>
-                                <span>About</span>
+                                <span>Requests</span>
+                              </button>
+        <button mat-button class="menu-button" routerLink="/about">
+                                <mat-icon>info</mat-icon>
+                                <span> Products</span>
+                              </button>
+        <button mat-button class="menu-button" routerLink="/about">
+                                <mat-icon>info</mat-icon>
+                                <span>Add Products</span>
+                              </button>
+        <button mat-button class="menu-button" routerLink="/about">
+                                <mat-icon>info</mat-icon>
+                                <span>Logout</span>
                               </button>
 
         <mat-divider></mat-divider>
@@ -48,87 +61,22 @@
 
     <mat-sidenav-content>
 
-
-
         <div class="container">
-            <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal ">Add Clerks</button>
-
-            <div class="col-md-12">
-                <div class="card m-3">
-                    <table class="table table-responsive table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Neighbourhood</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <td> name</td>
-                                <td> email</td>
-                                <td> phone</td>
-                                <td>
-                                    <span class="badge rounded-pill bg-info text-white">
-                   
-                        </span>
-                                </td>
-
-                                <td>
-                                    <a class="text-primary m-3" href="">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                    <a class="text-danger" href="">
-                                        <i class="fa fa-trash-alt text-danger"></i>
-                                    </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="5" class="text-center text-danger">No Contacts Created!</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <!-- MAIN CONTENT HERE -->
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque obcaecati architecto laudantium praesentium, repudiandae ab suscipit sint ipsa tempora exercitationem consectetur deleniti consequatur quia earum perspiciatis aliquam officia
+                vel mollitia?
+            </p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae perspiciatis ipsum hic molestias, commodi officia eaque neque sint placeat laborum nam, ullam magni, saepe obcaecati laboriosam. Vero ipsum nostrum optio.</p>
 
 
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Open modal for @fat</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="false" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send message</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </mat-sidenav-content>
+
+    <div class="container">
+
+
+    </div>
+
 </mat-sidenav-container>
