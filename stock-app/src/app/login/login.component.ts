@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 import {FormGroup, FormBuilder} from '@angular/forms'
 import { Router } from '@angular/router';
 @Component({
@@ -8,32 +10,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public loginForm!: FormGroup 
-  constructor(private formBuilder : FormBuilder, private http :HttpClient, private router: Router) { }
-
+  form: any = {
+    email: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email:[''],
-      password:[''],
-    })
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    }
   }
-  login(){
-    this.http.get<any>("https://stock-inv.herokuapp.com/v1/account/login/")
-    .subscribe(res=>{
-      const user = res.find((a:any)=>{
-        return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
-      });
-      if (user){
-        alert('Login Successful');
-        this.loginForm.reset();
-        this.router.navigate([""])
-      }else{
-        alert('User Not Found!')
+  onSubmit(): void {
+    const { email, password } = this.form;
+    this.authService.login(email, password).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        console.log(data)
+        this.redirect();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
       }
-
-    },err=>{
-      alert("Something Went Wrong!")
-    })
+    );
   }
-
+  redirect(): void {
+    this.router.navigate(["/dashboard"])
+  }
 }
