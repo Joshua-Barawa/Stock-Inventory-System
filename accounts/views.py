@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import logout, login
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth import authenticate
+from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from .utils import Util
@@ -63,6 +63,7 @@ def verify_email(request, token_id):
         user.is_admin = True
         user.is_staff = True
         user.save()
+
         data['success'] = 'Email verified successfully'
     except ObjectDoesNotExist:
         data['error'] = 'Invalid token'
@@ -70,24 +71,20 @@ def verify_email(request, token_id):
     return Response(data)
 
 
-@api_view(['POST'])
-@permission_classes([AllowAny, ])
+@api_view(["POST"])
+@permission_classes([AllowAny])
 def login_user(request):
+    serializer = AuthTokenSerializer(data=request.data)
     data = {}
-    email = request.POST.get('email')
-    password = request.POST.get('password')
-    try:
-        account = authenticate(request, email=email, password=password)
-        if account:
-            if account.is_active:
-                token, created = Token.objects.get_or_create(user=account)
-                login(request, account)
-                data = {'response': "Successfully logged in", 'token': token.key}
-        else:
-            data['error'] = "Invalid username or password!"
-    except ObjectDoesNotExist:
-        data['error'] = "User does not exist!"
+    if serializer.is_valid(raise_exception=True):
+        user = serializer.validated_data['user']
+        token,created = Token.objects.get_or_create(user=user)
+        data['username'] = user.username
+        data['email'] = user.email
+        data['token'] = token.key
 
+    else:
+        data['errors'] = "Invalid email or password"
     return Response(data)
 
 
