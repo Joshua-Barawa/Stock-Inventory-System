@@ -1,4 +1,5 @@
 export class Item {
+    id!: number;
     items_received!: number;
     items_in_stock!: number;
     payment_status!: Text;
