@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -20,16 +21,23 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
+import { NavbarComponent } from './navbar/navbar.component';
 // import {AppRoutingModule} from '../a';;
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     AdminDashboardComponent,
+    NavbarComponent,
   ],
   imports: [
    
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
 
 
    
