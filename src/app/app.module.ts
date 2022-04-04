@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClerkComponent } from './clerk/clerk.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +14,10 @@ import { ClerkComponent } from './clerk/clerk.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
+    // import HttpClientModule after BrowserModule.
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
