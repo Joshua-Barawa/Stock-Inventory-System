@@ -15,18 +15,32 @@
 
         <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button" routerLink="/home">
-                                            <mat-icon>home</mat-icon>
-                                            <span>Home</span>
-                                          </button>
-        <button mat-button class="menu-button" routerLink="/profile">
-                                            <mat-icon>person</mat-icon>
-                                            <span>Profile</span>
-                                          </button>
-        <button mat-button class="menu-button" routerLink="/about">
-                                            <mat-icon>info</mat-icon>
-                                            <span>LogoutL</span>
-                                          </button>
+
+        <button mat-button class="menu-button" routerLinkActive="" routerLink="/home">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+          </button>
+
+        <button mat-button class="menu-button" routerLink="/admin">
+            <mat-icon>person</mat-icon>
+            <span>Admins</span>
+          </button>
+        <button mat-button class="menu-button" routerLink="/request">
+            <mat-icon>info</mat-icon>
+            <span>Requests</span>
+          </button>
+        <button mat-button class="menu-button" routerLink="/products">
+            <mat-icon>info</mat-icon>
+            <span> Products</span>
+          </button>
+        <button mat-button class="menu-button" routerLink="/addproducts">
+            <mat-icon>info</mat-icon>
+            <span>Add Products</span>
+          </button>
+        <button mat-button class="menu-button" routerLink="/logout">
+            <mat-icon>info</mat-icon>
+            <span>Logout</span>
+          </button>
 
         <mat-divider></mat-divider>
 
@@ -44,13 +58,8 @@
 
         <!-- content aside navbar here -->
         <div class="container">
-            <!-- MAIN CONTENT HERE -->
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque obcaecati architecto laudantium praesentium, repudiandae ab suscipit sint ipsa tempora exercitationem consectetur deleniti consequatur quia earum perspiciatis aliquam officia
-                vel mollitia?
-            </p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae perspiciatis ipsum hic molestias, commodi officia eaque neque sint placeat laborum nam, ullam magni, saepe obcaecati laboriosam. Vero ipsum nostrum optio.</p>
 
-
+            <app-admin-dashboard></app-admin-dashboard>
 
         </div>
 

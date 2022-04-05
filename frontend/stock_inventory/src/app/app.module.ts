@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms'
 
 import { AppComponent } from './app.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// import { NavbarComponent } from './navbar/navbar.component';
+// import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 import {CommonModule } from '@angular/common';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -21,8 +22,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
-import { NavbarComponent } from './navbar/navbar.component';
-// import {AppRoutingModule} from '../a';;
+
+import {AppRoutingModule,routingComponents} from './app.routing.module'
 
 
 
@@ -30,14 +31,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AdminDashboardComponent,
-    NavbarComponent,
+    routingComponents,
+    // AdminDashboardComponent,
+    // NavbarComponent,
+    
   ],
   imports: [
    
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    AppRoutingModule,
 
 
    

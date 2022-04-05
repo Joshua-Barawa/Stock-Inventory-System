@@ -81,3 +81,7 @@ mat-divider {
 .modal-backdrop fade show {
     opacity: 0;
 }
+
+.menu-button:hover {
+    color: rgb(152, 226, 220)
+}
