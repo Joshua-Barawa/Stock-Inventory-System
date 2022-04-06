@@ -114,7 +114,7 @@ def inactivate_clerk(request, id):
     try:
         if user.is_admin:
             account = Account.objects.get(id=id)
-            account.status = False
+            account.is_active = False
             account.save()
             data['status'] = 'Clerk was deactivated!'
         else:
@@ -133,9 +133,13 @@ def activate_clerk(request, id):
     try:
         if user.is_admin:
             account = Account.objects.get(id=id)
-            account.status = True
-            account.save()
-            data['status'] = 'Clerk was activated!'
+            if not account.is_active:
+                account.is_active = True
+                account.save()
+                data['status'] = 'Clerk was activated!'
+            else:
+                data['status'] = 'Clerk is already active!'
+
         else:
             data['authorization'] = 'You have to be an admin to perform this request!'
 
