@@ -1,15 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart} from 'chart.js';
+import { AdministratorService } from '../administrator.service'; 
+import { AuthService } from '../auth.service';
+import {take,tap} from "rxjs"
+
+
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+myData:any;
+myData$:any
 
-  constructor() { }
+public users:any=[] 
+public clerks:any=[]
 
-  ngOnInit(): void {
+constructor(private _adminService:AdministratorService,private authService: AuthService) { }
+
+ngOnInit(): void {
+
+this.myData$=this._adminService
+.getData()
+.pipe(tap((data)=>
+    (this.myData=data)));
+
+// this._adminService.getUser().subscribe(data => this.users =data);
+
+console.log(this.myData )
+
 const ct = document.getElementById('mChart');
 const ctx = document.getElementById('myChart');
 const myChart = new Chart('myChart', {
@@ -82,4 +102,40 @@ const myChart = new Chart('myChart', {
       }
   }
 });
-  }}
+  }
+    
+
+  form: any = {
+    username: null,
+    full_name: null,
+    email: null,
+    business:null,
+    avatar:null,
+    password: null,
+    password2: null,
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+  onFetchAllClerks(){}
+
+  
+ 
+  onSubmit(): void {
+    const { username,full_name, email,business,avatar,password, password2 } = this.form;
+    this.authService.register(username,full_name, email,business,avatar,password, password2).subscribe(
+      data => {
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+        console.log('---',err)
+      }
+    );
+
+  }
+  
+
+}
