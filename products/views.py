@@ -80,6 +80,15 @@ def make_request(request):
     return Response(data)
 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated, ])
+def view_clerks(request):
+    name = request.user.full_name
+    requests = Request.objects.all()
+    serializer = RequestSerializer(requests, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def approve_request(request, id):
