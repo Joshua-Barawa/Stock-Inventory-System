@@ -82,7 +82,7 @@ def make_request(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated, ])
-def view_clerks(request):
+def view_requests(request):
     name = request.user.full_name
     requests = Request.objects.all()
     serializer = RequestSerializer(requests, many=True)
