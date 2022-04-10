@@ -8,6 +8,8 @@ urlpatterns = [
     path('status/change/<str:id>/', change_payment_status, name='change-payment-status'),
     path('request/', make_request, name='request-product'),
     path('view-requests/', view_requests, name='view-requests'),
+    path('view-requests/approved', approved_requests, name='approved-requests'),
+    path('view-requests/declined', declined_requests, name='declined-requests'),
     path('request/approve/<str:id>/', approve_request, name='approve-request'),
     path('request/decline/<str:id>/', decline_request, name='decline-request'),
 ]
