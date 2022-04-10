@@ -98,7 +98,7 @@ def approved_requests(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated, ])
-def declined_requests(request):
+def not_approved_requests(request):
     requests = Request.objects.filter(status=False)
     serializer = RequestSerializer(requests, many=True)
     return Response(serializer.data)

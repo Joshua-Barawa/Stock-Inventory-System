@@ -11,4 +11,7 @@ urlpatterns = [
     path('inactivate/<str:id>/', inactivate_clerk, name='inactivate-clerk'),
     path('activate/<str:id>/', activate_clerk, name='activate-clerk'),
     path('delete/<str:id>/', delete_clerk, name='delete-clerk'),
+    path('inactivate/admin/<str:id>/', inactivate_admin, name='inactivate-admin'),
+    path('activate/admin/<str:id>/', activate_admin, name='activate-admin'),
+    path('delete/admin/<str:id>/', delete_admin, name='delete-admin'),
 ]

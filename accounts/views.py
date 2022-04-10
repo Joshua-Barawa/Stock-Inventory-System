@@ -78,7 +78,7 @@ def login_user(request):
     data = {}
     if serializer.is_valid(raise_exception=True):
         user = serializer.validated_data['user']
-        token,created = Token.objects.get_or_create(user=user)
+        token, created = Token.objects.get_or_create(user=user)
         data['username'] = user.username
         data['email'] = user.email
         data['token'] = token.key
@@ -161,4 +161,62 @@ def delete_clerk(request, id):
             data['authorization'] = 'You have to be an admin to perform this request!'
     except ObjectDoesNotExist:
         data['error'] = 'Clerk does not exist!'
+    return Response(data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated, ])
+def inactivate_admin(request, id):
+    data = {}
+    user = request.user
+    try:
+        if user.is_superuser:
+            account = Account.objects.get(id=id)
+            account.is_active = False
+            account.save()
+            data['status'] = 'Admin was deactivated!'
+        else:
+            data['authorization'] = 'You have to be a merchant to perform this request!'
+
+    except ObjectDoesNotExist:
+        data['error'] = 'Admin does not exist!'
+    return Response(data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated, ])
+def activate_admin(request, id):
+    data = {}
+    user = request.user
+    try:
+        if user.is_superuser:
+            account = Account.objects.get(id=id)
+            if not account.is_active:
+                account.is_active = True
+                account.save()
+                data['status'] = 'Admin was activated!'
+            else:
+                data['status'] = 'Admin is already active!'
+
+        else:
+            data['authorization'] = 'You have to be a merchant to perform this request!'
+
+    except ObjectDoesNotExist:
+        data['error'] = 'Admin does not exist!'
+    return Response(data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated, ])
+def delete_admin(request, id):
+    data = {}
+    user = request.user
+    try:
+        if user.is_superuser:
+            Account.objects.get(id=id).delete()
+            data['status'] = 'Admin was deleted!'
+        else:
+            data['authorization'] = 'You have to be a merchant to perform this request!'
+    except ObjectDoesNotExist:
+        data['error'] = 'Admin does not exist!'
     return Response(data)
