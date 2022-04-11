@@ -113,7 +113,7 @@ def inactivate_clerk(request, id):
     user = request.user
     try:
         if user.is_admin:
-            account = Account.objects.get(id=id)
+            account = Account.objects.get(email=id)
             account.is_active = False
             account.save()
             data['status'] = 'Clerk was deactivated!'
@@ -132,7 +132,7 @@ def activate_clerk(request, id):
     user = request.user
     try:
         if user.is_admin:
-            account = Account.objects.get(id=id)
+            account = Account.objects.get(email=id)
             if not account.is_active:
                 account.is_active = True
                 account.save()
@@ -155,7 +155,7 @@ def delete_clerk(request, id):
     user = request.user
     try:
         if user.is_admin:
-            account = Account.objects.get(id=id).delete()
+            Account.objects.get(email=id).delete()
             data['status'] = 'Clerk was deleted!'
         else:
             data['authorization'] = 'You have to be an admin to perform this request!'
@@ -171,7 +171,7 @@ def inactivate_admin(request, id):
     user = request.user
     try:
         if user.is_superuser:
-            account = Account.objects.get(id=id)
+            account = Account.objects.get(email=id)
             account.is_active = False
             account.save()
             data['status'] = 'Admin was deactivated!'
@@ -190,7 +190,7 @@ def activate_admin(request, id):
     user = request.user
     try:
         if user.is_superuser:
-            account = Account.objects.get(id=id)
+            account = Account.objects.get(email=id)
             if not account.is_active:
                 account.is_active = True
                 account.save()
@@ -213,7 +213,7 @@ def delete_admin(request, id):
     user = request.user
     try:
         if user.is_superuser:
-            Account.objects.get(id=id).delete()
+            Account.objects.get(email=id).delete()
             data['status'] = 'Admin was deleted!'
         else:
             data['authorization'] = 'You have to be a merchant to perform this request!'
