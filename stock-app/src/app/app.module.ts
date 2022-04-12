@@ -28,6 +28,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
 import { OrderRequestComponent } from './order-request/order-request.component';
+import { RequestsComponent } from './requests/requests.component';
+import { ItemsComponent } from './items/items.component';
 
 // import {AppRoutingModule} from '../a';;
 
@@ -39,6 +41,8 @@ import { OrderRequestComponent } from './order-request/order-request.component';
     DashboardComponent,
     NavbarComponent,
     OrderRequestComponent,
+    RequestsComponent,
+    ItemsComponent,
   ],
   imports: [
     BrowserModule,
