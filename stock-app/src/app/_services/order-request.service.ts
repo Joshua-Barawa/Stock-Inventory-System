@@ -5,7 +5,7 @@ import { TokenStorageService } from '../_services/token-storage.service'
 
 const ORDER_REQUESTS_API = 'https://stock-inv.herokuapp.com/v1/product/view-requests/';
 
-const APPROVE_REQUEST_API = "https://stock-inv.herokuapp.com/v1/product/request/approve/";
+const APPROVE_REQUEST_API = "https://stock-inv.herokuapp.com/v1/product/view-requests/approved";
 const DECLINE_REQUEST_API = "https://stock-inv.herokuapp.com/v1/product/view-requests/n-approved";
 
 
