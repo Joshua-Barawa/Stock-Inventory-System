@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Chart} from 'chart.js';
 import { AdministratorService } from '../administrator.service'; 
 import { AuthService } from '../auth.service';
+import { AuthServices } from '../auth.service';
 import {take,tap} from "rxjs"
 
 
@@ -12,23 +13,34 @@ import {take,tap} from "rxjs"
 })
 export class AdminDashboardComponent implements OnInit {
 myData:any;
+
 myData$:any
+
+isActivateBtn=true;
+
+activateBtn(){
+  this.isActivateBtn=!this.isActivateBtn
+}
 
 public users:any=[] 
 public clerks:any=[]
+  
 
-constructor(private _adminService:AdministratorService,private authService: AuthService) { }
+constructor(private _adminService:AdministratorService,private authService: AuthService,private authServices: AuthServices) { }
 
 ngOnInit(): void {
+this.myData$=this._adminService.getData().subscribe(res=>{
+      // let allClerks= res
+      
+      console.log(res)
+      console.log(this.myData)
+      console.log(this.myData$)
 
-this.myData$=this._adminService
-.getData()
-.pipe(tap((data)=>
-    (this.myData=data)));
-
-// this._adminService.getUser().subscribe(data => this.users =data);
+    })
+this.myData$=this._adminService.getData().pipe(tap((data)=>(this.myData=data)));
 
 console.log(this.myData )
+console.log(this.myData$)
 
 const ct = document.getElementById('mChart');
 const ctx = document.getElementById('myChart');
@@ -123,19 +135,54 @@ const myChart = new Chart('myChart', {
  
   onSubmit(): void {
     const { username,full_name, email,business,avatar,password, password2 } = this.form;
-    this.authService.register(username,full_name, email,business,avatar,password, password2).subscribe(
+    this.authServices.registerClerk(username,full_name, email,business,avatar,password, password2).subscribe(
       data => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        console.log(data)
       },
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
         console.log('---',err)
+        
       }
     );
 
   }
   
+  onDeleteClerk(id:string){
+    if (confirm( ' Are you sure to delete??' +id  )){
+      this._adminService.deleteClerk(id).subscribe(res=>{
+     console.log(res);
+     
+      });
+    }
+  }
+
+  
+  onActivate(id:string){
+    if (confirm( ' Are you sure to activate??' +id  )){
+      this._adminService.activateClerk(id).subscribe(res=>{
+      console.log(res);
+      });
+    }
+
+  }
+  onDectivate(id:string){
+    if (confirm( ' Are you sure to deactivate??' +id  )){
+      this._adminService.inactivateClerk(id).subscribe(res=>{
+       console.log(res);
+      });
+    }
+
+  }
+//  enableButton2() {
+//         document.getElementById("button2").disabled = false;
+//     }
+//   enableButton2() {
+//         document.getElementById("button2").disabled = false;
+//     }
+
 
 }

@@ -1,13 +1,20 @@
 .card:hover {
-    /* position: absolute;
-    left: 441px;
-    right: 741px;
-    top: 127px;
-    bottom: 763px; */
-    /* grayscale / white */
     background: #FFFFFF;
-    /* accent / default */
     border: 1px solid #3751FF;
     box-sizing: border-box;
     border-radius: 8px;
 }
+
+.act{
+    background-color:green;
+
+}
+.deact{
+    color:green;
+}
+
+/* .table table-responsive table-hover{
+    align-items:center;
+    justify-content:center;
+    padding-left:90px;
+} */

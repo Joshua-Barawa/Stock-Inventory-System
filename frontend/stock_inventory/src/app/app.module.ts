@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,17 +25,19 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
 
 import {AppRoutingModule,routingComponents} from './app.routing.module'
+import { AdministratorService } from './administrator.service';
+import { TokenStorageService } from './token-storage.service';
+import { AuthService } from './auth.service';
+import { AuthServices } from './auth.service';
 
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+// import { ExclInterceptor } from './interceptor/excl.interceptor';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    routingComponents,
-    // AdminDashboardComponent,
-    // NavbarComponent,
-    
+    AppComponent,routingComponents
   ],
   imports: [
    
@@ -42,7 +45,7 @@ import {AppRoutingModule,routingComponents} from './app.routing.module'
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-
+    HttpClientModule,
 
    
     // AppRoutingModule,
@@ -64,7 +67,8 @@ import {AppRoutingModule,routingComponents} from './app.routing.module'
 
 
   ],
-  providers: [],
+  providers: [AdministratorService,AuthService,AuthServices,TokenStorageService,
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

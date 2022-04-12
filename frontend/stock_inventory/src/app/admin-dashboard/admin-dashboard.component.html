@@ -1,13 +1,4 @@
-<div class="container">
-    <!-- MAIN CONTENT HERE -->
-    <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque obcaecati architecto laudantium praesentium, repudiandae ab suscipit sint ipsa tempora exercitationem consectetur deleniti consequatur quia earum perspiciatis aliquam officia vel
-        mollitia?
-    </p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae perspiciatis ipsum hic molestias, commodi officia eaque neque sint placeat laborum nam, ullam magni, saepe obcaecati laboriosam. Vero ipsum nostrum optio.</p>
-    <ul *ngFor="let user of users">
-        <p>test service</p>
-        <li>{{user.name}}</li>
-    </ul> -->
+<div id=nav class="container">
 
     <div class="container">
 
@@ -69,51 +60,56 @@
     </div>
 
     <!-- table to dispay all clerks  -->
-    {{myData|json}}
+    <!-- {{myData|json}} -->
     <div class="col-md-12 mt-3 mb-3">
-        <div class="container">
+         <div class="container">
             <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal ">Add Clerks</button>
-
+            
+        <div class="col-md-12">
+        <div class="card m-3">
             <div class="card ">
-                <table class="table table-responsive table-hover">
+               <table class="table table-responsive table-hover ">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Action</th>
-                            <th scope="col">Action</th>
+                            <th scope="col px-3"></th>
+                            <th scope="col px-2"></th>
+                            <th scope="col px-2">Name</th>
+                            <th scope="col px-2">Email</th>
+                            <th scope="col px-2">Action</th>
+                            <th scope="col px-2">Action</th>
+                            <th scope="col px-2">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-
+                    <tbody class="justify-content-center">
+                        <img src="" alt="">
                         <tr *ngFor="let item of myData$ |async">
-                            <td> {{item.name}}</td>
+                            <td class="px-2"> {{item.id}}</td>
+                            <td> <img src="{{item.avatar_url}}" alt="profile_pic"></td>
+                            <td> {{item.username}}</td>
                             <td> {{item.email}}</td>
-                            <td> phone</td>
-                            <td>
-                                <span class="badge rounded-pill bg-info text-white">
+                            <td> <a id="button1"   type="button" (click)="onActivate(item.email)">   <span class="badge rounded-pill bg-info text-white p-2">
+                                Activate
+                    </span></a></td>
+                            <td> <a id="button2"   type="button" (click)="onDectivate(item.email)">   <span class="badge rounded-pill bg-warning text-white p-2">
+                                Inactivate
+                    </span></a></td>
+                            <td class="px-2"> <a class="text-danger px-2" (click)="onDeleteClerk(item.email)"> 
+                                <i class="fa fa-trash-alt text-danger"></i>
+                            </a></td>
 
-                    </span>
-                            </td>
-
-                            <td>
-                                <a class="text-primary m-3" href="">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                                <a class="text-danger" href="">
-                                    <i class="fa fa-trash-alt text-danger"></i>
-                                </a>
-                            </td>
+                         
+                
                         </tr>
 
-                        <tr>
-                            <td colspan="5" class="text-center text-danger">No Clerk Created!</td>
-                        </tr>
+
 
                     </tbody>
                 </table>
-            </div>
-        </div>
+            
+        </div> 
+    </div> 
+        
+    </div>
     </div>
 </div>
 
@@ -219,7 +215,7 @@
 
                     <div class="form-group">
                         <br>
-                        <button class="btn btn-primary ">Submit</button>
+                        <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                     <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                         Adding Clerks Failed!<br />{{ errorMessage }}
@@ -234,3 +230,5 @@
         </div>
     </div>
 </div>
+
+
