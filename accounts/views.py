@@ -100,7 +100,7 @@ def logout_user(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated, ])
 def view_admins(request):
-    admins = Account.objects.all()
+    admins = Account.objects.filter(is_admin=True)
     serializer = AccountSerializer(admins, many=True)
     return Response(serializer.data)
 
