@@ -9,23 +9,21 @@ import { ItemsServiceService } from '../items-service.service'
 export class ItemsComponent implements OnInit {
 
   authToken: any
-
   item = {
-    items_received: '',
-    items_in_stock: '',
-    payment_status: '',
-    items_spoiled: '',
-    buying_price: '',
-    selling_price: ''
+    name: '',
+    received: '',
+    in_stock: '',
+    spoiled: '',
+    buying_price: 0,
+    selling_price: 0
   }
-
   isItemAdded = false
 
   constructor(private itemsService: ItemsServiceService) { }
   onAdd() {} 
 
-  onAdditem() {const {items_received, items_in_stock, payment_status, items_spoiled, buying_price, selling_price } = this.item;
-    this.itemsService.postItem(items_received, items_in_stock, payment_status, items_spoiled, buying_price, selling_price).subscribe(data => {
+  onAdditem() {const {name, received, in_stock, spoiled, buying_price, selling_price } = this.item;
+    this.itemsService.postItem(name, received, in_stock, spoiled, buying_price, selling_price).subscribe(data => {
       console.log(data)
     })
   }
