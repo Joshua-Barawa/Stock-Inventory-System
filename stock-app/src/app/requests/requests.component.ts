@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestsService } from '../requests.service'
+import { ItemsServiceService } from '../items-service.service'
 
 @Component({
   selector: 'app-requests',
@@ -9,26 +9,23 @@ import { RequestsService } from '../requests.service'
 export class RequestsComponent implements OnInit {
 
   authToken: any
-
   item = {
-    supplier: '',
-    email: '',
-    date: '',
-    item_needed: '',
+    item_name: '',
+    s_name: '',
+    s_email: '',
+    status: '',
     quantity: ''
   }
-
   isItemRequested = false
   
-  constructor(private requestsService: RequestsService) { }
-  onRequest() {} 
-
-  onRequestitem() {const {supplier, email, date, item_needed, quantity} = this.item;
-    this.requestsService.requestItem(supplier, email, date, item_needed, quantity).subscribe(data => {
+  constructor(private itemsService: ItemsServiceService) { }
+  onRequest() {}
+  onRequestitem() {
+    const { item_name, s_name, s_email, quantity } = this.item;
+    this.itemsService.requestItem(item_name, s_name, s_email, quantity).subscribe(data => {
       console.log(data)
     })
   }
-
   ngOnInit(): void {
   }
 
