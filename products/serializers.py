@@ -8,7 +8,13 @@ class ProductSerializer(ModelSerializer):
         fields = ['name', 'received', 'in_stock', 'status', 'spoiled', 'buying_price', 'selling_price']
 
 
-class RequestSerializer(ModelSerializer):
+class RequestSerializerPOST(ModelSerializer):
     class Meta:
         model = Request
         fields = ['item_name', 's_name', 's_email', 'quantity']
+
+
+class RequestSerializerGET(ModelSerializer):
+    class Meta:
+        model = Request
+        fields = ['item_name', 's_name', 's_email', 'status' 'quantity']

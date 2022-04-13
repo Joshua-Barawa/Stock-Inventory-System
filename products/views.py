@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .serializers import ProductSerializer, RequestSerializer
+from .serializers import ProductSerializer, RequestSerializerPOST, RequestSerializerGET
 from .models import *
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -70,7 +70,7 @@ def make_request(request):
     data = {}
     user = request.user
     if request.method == 'POST':
-        serializer = RequestSerializer(data=request.data)
+        serializer = RequestSerializerPOST(data=request.data)
         if serializer.is_valid():
             product = serializer.save()
             product.clerk = user
@@ -84,7 +84,7 @@ def make_request(request):
 def view_requests(request):
     data = {}
     requests = Request.objects.all()
-    serializer = RequestSerializer(requests, many=True)
+    serializer = RequestSerializerGET(requests, many=True)
     data['status'] = "Requests fetched successful"
     return Response(serializer.data)
 
@@ -93,7 +93,7 @@ def view_requests(request):
 @permission_classes([IsAuthenticated, ])
 def approved_requests(request):
     requests = Request.objects.filter(status=True)
-    serializer = RequestSerializer(requests, many=True)
+    serializer = RequestSerializerGET(requests, many=True)
     return Response(serializer.data)
 
 
@@ -101,7 +101,7 @@ def approved_requests(request):
 @permission_classes([IsAuthenticated, ])
 def not_approved_requests(request):
     requests = Request.objects.filter(status=False)
-    serializer = RequestSerializer(requests, many=True)
+    serializer = RequestSerializerGET(requests, many=True)
     return Response(serializer.data)
 
 
