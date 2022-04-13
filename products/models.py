@@ -16,7 +16,7 @@ class Product(models.Model):
     clerk = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Request(models.Model):
@@ -29,4 +29,4 @@ class Request(models.Model):
     clerk = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.item_name
+        return str(self.item_name)

@@ -18,7 +18,6 @@ def add_product(request):
             product = serializer.save()
             product.clerk = user
             product.save()
-            print(product.clerk.admin_name)
             data['status'] = "Product added successful"
     return Response(data)
 
