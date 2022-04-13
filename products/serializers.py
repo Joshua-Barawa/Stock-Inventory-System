@@ -11,4 +11,4 @@ class ProductSerializer(ModelSerializer):
 class RequestSerializer(ModelSerializer):
     class Meta:
         model = Request
-        fields = ['item_name', 's_name', 's_email', 'status', 'quantity']
+        fields = ['item_name', 's_name', 's_email', 'quantity']
