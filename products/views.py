@@ -53,7 +53,7 @@ def change_payment_status(request, id):
     data = {}
     user = request.user
     try:
-        product = Product.objects.get(id=id)
+        product = Product.objects.get(name=id)
         if user.is_admin:
             product.status = True
             product.save()
@@ -110,7 +110,7 @@ def approve_request(request, id):
     data = {}
     user = request.user
     try:
-        p_request = Request.objects.get(id=id)
+        p_request = Request.objects.get(item_name=id)
         if user.is_admin:
             p_request.status = True
             p_request.save()
@@ -129,7 +129,7 @@ def decline_request(request, id):
     user = request.user
     try:
         if user.is_admin:
-            Request.objects.get(id=id).delete()
+            Request.objects.get(item_name=id).delete()
             data['status'] = 'Product request was declined!'
         else:
             data['authorization'] = 'You have to be an admin to perform this request!'
