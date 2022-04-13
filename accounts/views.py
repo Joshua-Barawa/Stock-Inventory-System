@@ -99,7 +99,7 @@ def logout_user(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated, ])
-def view_admin(request):
+def view_admins(request):
     admins = Account.objects.all()
     serializer = AccountSerializer(admins, many=True)
     return Response(serializer.data)
