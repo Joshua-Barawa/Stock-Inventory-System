@@ -82,10 +82,8 @@ def make_request(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated, ])
 def view_requests(request):
-    data = {}
     requests = Request.objects.all()
     serializer = RequestSerializerGET(requests, many=True)
-    data['status'] = "Requests fetched successful"
     return Response(serializer.data)
 
 
