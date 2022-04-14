@@ -30,17 +30,20 @@
         </div>    
     </div>
 </div> -->
-<div class="container mt-4" >
-   <div class="col-md-12">
-    <div class="card m-3" >
-           <table class="table table-responsive table-hover ">
+<app-navbar>
+
+</app-navbar>
+<div class="container mt-4">
+    <div class="col-md-12">
+        <div class="card m-3">
+            <table class="table table-responsive table-hover ">
                 <thead>
                     <tr>
                         <th scope="col px-2">Name</th>
                         <th scope="col px-2">Email</th>
                         <th scope="col px-2">Quantity</th>
                         <th scope="col px-2">Status</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody class="justify-content-center">
@@ -49,24 +52,24 @@
                         <td class="px-2"> {{order.itemName}}</td>
                         <td> {{order.supplierEmail}}</td>
                         <td> {{order.quantity}}</td>
-                        <td> 
-                            <a id="button1"   type="button"(click)= "onApprove()" > 
+                        <td>
+                            <a id="button1" type="button" (click)="onApprove()">
                                 <span class="badge rounded-pill bg-info text-white p-2">Approve</span>
                             </a>
                         </td>
-                        <td> 
-                            <a id="button2"   type="button">   
+                        <td>
+                            <a id="button2" type="button">
                                 <span class="badge rounded-pill bg-warning text-white p-2">Decline</span>
                             </a>
                         </td>
-                        <td class="px-2"> 
-                            <a class="text-danger px-2"> 
+                        <td class="px-2">
+                            <a class="text-danger px-2">
                                 <i class="fa fa-trash-alt text-danger"></i>
                             </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-    </div> 
- </div>    
- </div>
+        </div>
+    </div>
+</div>

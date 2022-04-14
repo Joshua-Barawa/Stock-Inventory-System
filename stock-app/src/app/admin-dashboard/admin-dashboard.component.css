@@ -5,16 +5,29 @@
     border-radius: 8px;
 }
 
-.act{
-    background-color:green;
+.act {
+    background-color: green;
+}
 
+.deact {
+    color: green;
 }
-.deact{
-    color:green;
-}
+
 
 /* .table table-responsive table-hover{
     align-items:center;
     justify-content:center;
     padding-left:90px;
 } */
+
+@media only screen and (min-width: 600px) {
+    .bodyadmin {
+        margin-right: -100px!important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .bodyadmin {
+        margin-right: -100px!important;
+    }
+}
