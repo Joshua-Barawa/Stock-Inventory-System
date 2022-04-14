@@ -110,7 +110,7 @@ def view_admins(request):
 def view_clerks(request):
     name = request.user.full_name
     clerks = Account.objects.filter(admin_name=name)
-    serializer = AccountSerializer(clerks, many=True)
+    serializer = AccountSerializerGET(clerks, many=True)
     return Response(serializer.data)
 
 

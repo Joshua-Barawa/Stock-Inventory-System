@@ -24,3 +24,8 @@ class AccountSerializer(serializers.ModelSerializer):
         account.save()
         return account
 
+
+class AccountSerializerGET(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ['full_name', 'username', 'email', 'business', 'avatar', 'is_active']
