@@ -11,7 +11,7 @@
 
 
 
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <div class="card bg-light shadow mb-3">
                         <p class="text-bold text-center text-muted h4 p-5">Order <br> <span class=" fs-1 fw-bold  py-4">12</span></p>
                     </div>
@@ -28,7 +28,7 @@
                         <p class="text-bold text-center text-muted h4 p-5">Pending Payments <br> <span class=" fs-1 fw-bold  py-4">3</span></p>
 
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -72,8 +72,6 @@
                                     <th scope="col px-2">Email</th>
                                     <th scope="col px-2">Action</th>
                                     <th scope="col px-2">Action</th>
-                                    <th scope="col px-2">Action</th>
-                                </tr>
                             </thead>
                             <tbody class="justify-content-center">
                                 <img src="" alt="">
@@ -82,17 +80,17 @@
                                     <td> <img width="32" height="32" src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg" alt="profile_pic"></td>
                                     <td> {{item.username}}</td>
                                     <td> {{item.email}}</td>
-                                    <div *ngIf="isLoggedIn">
+                                    <div *ngIf="!item.is_active">
                                         <td>
-                                            <a id="button1" (click)="isLoggedIn = !isLoggedIn" type="button" (click)="onActivate(item.email)"> <span class="badge rounded-pill bg-info text-white p-2">
-                                Activate
-                    </span></a>
+                                            <a id="button1" type="button" (click)="onActivate(item.email)"> 
+                                                <span class="badge rounded-pill bg-info text-white p-2">Activate</span>
+                                            </a>
                                         </td>
                                     </div>
 
-                                    <div *ngIf="!isLoggedIn">
+                                    <div *ngIf="item.is_active">
                                         <td>
-                                            <a id="button2" (click)="isLoggedIn = !isLoggedIn;onDectivate(item.email)" type="button"> <span class="badge rounded-pill bg-warning text-white p-2">
+                                            <a id="button2" (click)="onDectivate(item.email)" type="button"> <span class="badge rounded-pill bg-warning text-white p-2">
                                 Inactivate
                     </span></a>
                                         </td>

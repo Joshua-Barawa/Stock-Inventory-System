@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart} from 'chart.js';
 import { AdministratorService } from '../administrator.service'; 
-import { AuthService } from '../_services/auth.service'
+import { AuthService } from '../_services/auth.service';
 import { AuthServices } from '../_services/auth.service';
 import {take,tap} from "rxjs"
+import { OrderRequestService } from '../_services/order-request.service'
 
 
 @Component({
@@ -13,28 +14,28 @@ import {take,tap} from "rxjs"
 })
 export class AdminDashboardComponent implements OnInit {
 myData:any;
-
 myData$:any
 isLoggedIn = false;
 
 public users:any=[] 
 public clerks:any=[]
+public requests:any=[]
+
   
 
-constructor(private _adminService:AdministratorService,private authService: AuthService,private authServices: AuthServices) { }
+constructor(private _adminService:AdministratorService,private authService: AuthService,private authServices: AuthServices,private orderService: OrderRequestService) { }
 
 ngOnInit(): void {
-this.myData$=this._adminService.getData().subscribe(res=>{
-      // let allClerks= res
-      
+this._adminService.getData().subscribe(res=>{
+      this.clerks= res
       console.log(res)
-      console.log(this.myData)
-      console.log(this.myData$)
+})
+// this.myData$=this._adminService.getData().pipe(tap((data)=>(this.myData=data)));
+this.myData$=this.orderService.getOrderRequests().subscribe(res=>{
+  this.requests= res
+})
 
-    })
-this.myData$=this._adminService.getData().pipe(tap((data)=>(this.myData=data)));
-
-console.log(this.myData )
+console.log(this.myData)
 console.log(this.myData$)
 
 const ct = document.getElementById('mChart');
@@ -42,9 +43,9 @@ const ctx = document.getElementById('myChart');
 const myChart = new Chart('myChart', {
     type: 'line',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         datasets: [{
-            label: '# of Votes',
+            label: 'Products',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -67,9 +68,6 @@ const myChart = new Chart('myChart', {
   },
   options: {
       scales: {
-          // y: {
-          //     beginAtZero: true
-          // }
       }
   }
 });

@@ -10,28 +10,18 @@
                 <div class="row pt-2">
                     <div class="col-md-3">
                         <div class="card card-outline bg-light shadow mb-3 ">
-                            <p class="text-bold text-center text-muted h4 p-5">Clerks <br> <span class=" fs-1 fw-bold  py-4">24</span></p>
+                            <p class="text-bold text-center text-muted h4 p-5">Clerks <br> <span class=" fs-1 fw-bold  py-4">{{clerks.length}}</span></p>
                         </div>
                     </div>
-
-
-
                     <div class="col-md-3">
                         <div class="card bg-light shadow mb-3">
-                            <p class="text-bold text-center text-muted h4 p-5">Order <br> <span class=" fs-1 fw-bold  py-4">12</span></p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card bg-light shadow mb-3">
-                            <p class="text-bold text-center text-muted h4 p-5"> Request<br><span class=" fs-1 fw-bold  py-4">300</span></p>
+                            <p class="text-bold text-center text-muted h4 p-5">Products <br> <span class=" fs-1 fw-bold  py-4">12</span></p>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="card bg-light shadow mb-3">
-                            <p class="text-bold text-center text-muted h4 p-5">Stock Entries <br> <span class=" fs-1 fw-bold  py-4">3</span></p>
-
+                            <p class="text-bold text-center text-muted h4 p-5"> Requests<br><span class=" fs-1 fw-bold  py-4">{{requests.length}}</span></p>
                         </div>
                     </div>
 
@@ -85,14 +75,14 @@
                             </thead>
                             <tbody class="justify-content-center">
                                 <img src="" alt="">
-                                <tr *ngFor="let item of myData$ |async">
-                                    <td class="px-2"> {{item.id}}</td>
+                                <tr *ngFor="let  clerk of clerks ">
+                                    <td class="px-2"> {{clerk.id}}</td>
                                     <td> <img width="32" height="32" src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg" alt="profile_pic"></td>
-                                    <td> {{item.username}}</td>
-                                    <td> {{item.email}}</td>
+                                    <td> {{clerk.username}}</td>
+                                    <td> {{clerk.email}}</td>
                                     <div *ngIf="isLoggedIn">
                                         <td>
-                                            <a id="button1" (click)="isLoggedIn = !isLoggedIn" type="button" (click)="onActivate(item.email)"> <span class="badge rounded-pill bg-info text-white p-2">
+                                            <a id="button1" (click)="isLoggedIn = !isLoggedIn" type="button" (click)="onActivate(clerk.email)"> <span class="badge rounded-pill bg-info text-white p-2">
                                 Activate
                     </span></a>
                                         </td>
@@ -100,13 +90,13 @@
 
                                     <div *ngIf="!isLoggedIn">
                                         <td>
-                                            <a id="button2" (click)="isLoggedIn = !isLoggedIn;onDectivate(item.email)" type="button"> <span class="badge rounded-pill bg-warning text-white p-2">
+                                            <a id="button2" (click)="isLoggedIn = !isLoggedIn;onDectivate(clerk.email)" type="button"> <span class="badge rounded-pill bg-warning text-white p-2">
                                 Inactivate
                     </span></a>
                                         </td>
                                     </div>
                                     <td class="px-2">
-                                        <a class="text-danger px-2" (click)="onDeleteClerk(item.email)">
+                                        <a class="text-danger px-2" (click)="onDeleteClerk(clerk.email)">
                                             <i class="fa fa-trash-alt text-danger"></i>
                                         </a>
                                     </td>
