@@ -66,6 +66,7 @@ import { TokenStorageService } from './_services/token-storage.service';
      // AppRoutingModule,
      MatDividerModule,
      CommonModule,
+     BrowserAnimationsModule,
      MatTabsModule,
      MatSidenavModule,
      MatToolbarModule,
