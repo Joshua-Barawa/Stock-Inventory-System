@@ -6,6 +6,8 @@ import { DashboardComponent} from './dashboard/dashboard.component';
 import { OrderRequestComponent} from './order-request/order-request.component';
 import { RequestsComponent } from './requests/requests.component'
 import { ItemsComponent } from './items/items.component'
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { MerchantComponent } from './merchant/merchant.component';
 
 const routes: Routes = [
    {path:'', redirectTo:'login', pathMatch:'full'},
@@ -14,7 +16,10 @@ const routes: Routes = [
    {path:'dashboard', component:DashboardComponent},
    {path:'order-requests', component:OrderRequestComponent},
    {path:'requests', component:RequestsComponent},
-   {path:'items', component:ItemsComponent}
+   {path:'items', component:ItemsComponent},
+   {path:'admin',component:AdminDashboardComponent},
+   {path: 'merchant',component:MerchantComponent},
+
 
 ];
 
