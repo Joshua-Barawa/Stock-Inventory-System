@@ -25,13 +25,22 @@ export class OrderRequestComponent implements OnInit {
       }
     );
   }
-  onApprove(){
-    this.orderRequestService.approveOderRequests().subscribe(
+  async onApprove(itemName: string){
+    await this.orderRequestService.approveOderRequests(itemName).subscribe(
       data => {
       console.log(data);
-        
+      window.location.reload();
       }
     )
+    
   }
-
+  async onDecline(itemName: string){
+    await this.orderRequestService.declineOderRequests(itemName).subscribe(
+      data => {
+      console.log(data);
+      window.location.reload();
+      }
+    )
+    
+  }
 }

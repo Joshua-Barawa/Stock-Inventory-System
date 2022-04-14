@@ -80,9 +80,9 @@
                                     <td> <img width="32" height="32" src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg" alt="profile_pic"></td>
                                     <td> {{clerk.username}}</td>
                                     <td> {{clerk.email}}</td>
-                                    <div *ngIf="isLoggedIn">
+                                    <div *ngIf="!clerk.is_active">
                                         <td>
-                                            <a id="button1" (click)="isLoggedIn = !isLoggedIn" type="button" (click)="onActivate(clerk.email)"> <span class="badge rounded-pill bg-info text-white p-2">
+                                            <a id="button1" type="button" (click)="onActivate(clerk.email)"> <span class="badge rounded-pill bg-info text-white p-2">
                                 Activate
                     </span></a>
                                         </td>
@@ -90,7 +90,7 @@
 
                                     <div *ngIf="!isLoggedIn">
                                         <td>
-                                            <a id="button2" (click)="isLoggedIn = !isLoggedIn;onDectivate(clerk.email)" type="button"> <span class="badge rounded-pill bg-warning text-white p-2">
+                                            <a id="button2" (click)="onDectivate(clerk.email)" type="button"> <span class="badge rounded-pill bg-warning text-white p-2">
                                 Inactivate
                     </span></a>
                                         </td>
@@ -100,13 +100,7 @@
                                             <i class="fa fa-trash-alt text-danger"></i>
                                         </a>
                                     </td>
-
-
-
                                 </tr>
-
-
-
                             </tbody>
                         </table>
 

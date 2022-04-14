@@ -54,19 +54,26 @@
                         <td> {{order.supplierEmail}}</td>
                         <td> {{order.quantity}}</td>
                         <td>
-                            <a id="button1" type="button" (click)="onApprove()">
-                                <span class="badge rounded-pill bg-info text-white p-2">Approve</span>
-                            </a>
+                            <div *ngIf="order.status; else notApproved">
+                                <a id="approved" type="button">
+                                    <span class="badge rounded-pill bg-info text-white p-2 approved-badge">Approved</span>
+                                </a>
+                            </div>
+                            
+                            <ng-template #notApproved>
+                                <a id="button1" type="button" (click)="onApprove(order.itemName)">
+                                    <span class="badge rounded-pill bg-info text-white p-2">Approve</span>
+                                </a>
+                            </ng-template>
                         </td>
                         <td>
-                            <a id="button2" type="button">
-                                <span class="badge rounded-pill bg-warning text-white p-2">Decline</span>
-                            </a>
-                        </td>
-                        <td class="px-2">
-                            <a class="text-danger px-2">
-                                <i class="fa fa-trash-alt text-danger"></i>
-                            </a>
+
+                            <div *ngIf="!order.status">
+                                <a id="button2" type="button" (click)="onDecline(order.itemName)">
+                                    <span class="badge rounded-pill bg-warning text-white p-2">Decline</span>
+                                </a>
+                            </div>
+                            
                         </td>
                     </tr>
                 </tbody>
