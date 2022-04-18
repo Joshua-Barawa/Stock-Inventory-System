@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  show = false
   constructor(private authService: AuthService) { }
   ngOnInit(): void {
   }
@@ -38,6 +39,10 @@ export class SignupComponent implements OnInit {
         console.log('---',err)
       }
     );
+  }
+
+  onTogglePassword(): void {
+    this.show = !this.show;
   }
 }
 

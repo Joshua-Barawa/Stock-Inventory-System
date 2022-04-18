@@ -7,8 +7,8 @@ const ORDER_REQUESTS_API = 'https://stock-inv.herokuapp.com/v1/product/view-requ
 
 const APPROVE_REQUEST_API = "https://stock-inv.herokuapp.com/v1/product/request/approve/";
 const DECLINE_REQUEST_API = "https://stock-inv.herokuapp.com/v1/product/request/decline/";
-
-
+const PAYED_PRODUCTS_API = "https://stock-inv.herokuapp.com/v1/product/status/paid/";
+const NOTPAYED_PRODUCTS_API ="https://stock-inv.herokuapp.com/v1/product/status/unpaid/"
 @Injectable({
   providedIn: 'root'
 })
@@ -30,5 +30,16 @@ export class OrderRequestService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${this.tokenStorage.getToken()}` })
     });
   }
+  payedProducts():Observable<any>{
+    return this.http.get(PAYED_PRODUCTS_API,{
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${this.tokenStorage.getToken()}` })
+    });
+  }
+  notPayedProducts():Observable<any>{
+    return this.http.get(NOTPAYED_PRODUCTS_API,{
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${this.tokenStorage.getToken()}` })
+    });
+  }
+
 
   }

@@ -4,7 +4,8 @@ import { AdministratorService } from '../administrator.service';
 import { AuthService } from '../_services/auth.service';
 import { AuthServices } from '../_services/auth.service';
 import {take,tap} from "rxjs"
-import { OrderRequestService } from '../_services/order-request.service'
+import { OrderRequestService } from '../_services/order-request.service';
+import { ItemsServiceService} from '../items-service.service'
 
 
 @Component({
@@ -20,10 +21,11 @@ isLoggedIn = false;
 public users:any=[] 
 public clerks:any=[]
 public requests:any=[]
+public buyingPrice: any=[]
 
-  
 
-constructor(private _adminService:AdministratorService,private authService: AuthService,private authServices: AuthServices,private orderService: OrderRequestService) { }
+
+constructor(private _adminService:AdministratorService,private authService: AuthService,private authServices: AuthServices,private orderService: OrderRequestService, private itemsService: ItemsServiceService) { }
 
 ngOnInit(): void {
 this._adminService.getData().subscribe(res=>{
@@ -34,9 +36,11 @@ this._adminService.getData().subscribe(res=>{
 this.myData$=this.orderService.getOrderRequests().subscribe(res=>{
   this.requests= res
 })
-
 console.log(this.myData)
 console.log(this.myData$)
+// this.itemService.onAdditem()
+// console.log(this.itemService.onAdditem().buying_price)
+
 
 const ct = document.getElementById('mChart');
 const ctx = document.getElementById('myChart');
@@ -46,7 +50,7 @@ const myChart = new Chart('myChart', {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         datasets: [{
             label: 'Products',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -78,7 +82,7 @@ const myChart = new Chart('myChart', {
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: '# of Votes',
+            label: '# of Clerks',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -159,18 +163,20 @@ const myChart = new Chart('myChart', {
   }
 
   
-  onActivate(id:string){
+  async onActivate(id:string){
     if (confirm( ' Are you sure to activate??' +id  )){
-      this._adminService.activateClerk(id).subscribe(res=>{
+      await this._adminService.activateClerk(id).subscribe(res=>{
       console.log(res);
+      window.location.reload();
       });
     }
 
   }
-  onDectivate(id:string){
+  async onDectivate(id:string){
     if (confirm( ' Are you sure to deactivate??' +id  )){
-      this._adminService.inactivateClerk(id).subscribe(res=>{
+      await this._adminService.inactivateClerk(id).subscribe(res=>{
        console.log(res);
+       window.location.reload();
       });
     }
 

@@ -18,18 +18,21 @@ export class ItemsComponent implements OnInit {
     selling_price: 0
   }
   isItemAdded = false
+  public buyingPrice: any = []
 
   constructor(private itemsService: ItemsServiceService) { }
   onAdd() {} 
 
   onAdditem() {const {name, received, in_stock, spoiled, buying_price, selling_price } = this.item;
     this.itemsService.postItem(name, received, in_stock, spoiled, buying_price, selling_price).subscribe(data => {
+      this.buyingPrice.push(buying_price)
       console.log(data)
+      console.log(this.buyingPrice + 'Eric')
+      // window.location.reload();
     })
   }
-  ngOnInit(): void {
 
-   
-    
+  ngOnInit(): void {
+    console.log(this.buyingPrice + 'Eric')
   }
 }

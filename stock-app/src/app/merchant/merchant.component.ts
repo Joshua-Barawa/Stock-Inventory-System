@@ -27,6 +27,8 @@ form: any = {
 isSuccessful = false;
 isSignUpFailed = false;
 errorMessage = '';
+isItemAdded = false
+  public buyingPrice: any = []
   constructor(private _adminService:AdministratorService,private authService: AuthService,private authServices: AuthServices) { }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ const myChart = new Chart('myChart', {
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: '# of Votes',
+            label: '# of Admins',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -74,9 +76,6 @@ const myChart = new Chart('myChart', {
   },
   options: {
       scales: {
-          // y: {
-          //     beginAtZero: true
-          // }
       }
   }
 });
@@ -87,7 +86,7 @@ const myChart = new Chart('myChart', {
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: '# of Votes',
+            label: '# of Admins',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -150,22 +149,24 @@ const myChart = new Chart('myChart', {
   }
 
   
-  onActivate(id:string){
+ async onActivate(id:string){
     if (confirm( ' Are you sure to activate??' +id  )){
-      this._adminService.activateAdmin(id).subscribe(res=>{
+      await this._adminService.activateAdmin(id).subscribe(res=>{
       console.log(res);
       this.ngOnInit
+      window.location.reload();
       });
     }
 
   }
 
 
-  onDectivate(id:string){
+  async onDectivate(id:string){
     if (confirm( ' Are you sure to deactivate??' +id  )){
-      this._adminService.inactivateAdmin(id).subscribe(res=>{
+      await this._adminService.inactivateAdmin(id).subscribe(res=>{
        console.log(res);
        this.ngOnInit
+       window.location.reload();
       });
     }
 

@@ -41,6 +41,8 @@ import { AuthService, AuthServices } from './_services/auth.service';
 import { TokenStorageService } from './_services/token-storage.service';
 
 
+
+
 // import {AppRoutingModule} from '../a';;
 
 @NgModule({
@@ -54,7 +56,8 @@ import { TokenStorageService } from './_services/token-storage.service';
     RequestsComponent,
     ItemsComponent,
     MerchantComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+  
   ],
   imports: [
     BrowserModule,

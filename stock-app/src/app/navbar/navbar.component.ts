@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  public user:any=[]
+
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
+    this.user=this.tokenStorageService.getUser()
+    console.log(this.user.username)
   }
 
   logout(): void {

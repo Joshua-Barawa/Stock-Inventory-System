@@ -88,7 +88,7 @@
                                         </td>
                                     </div>
 
-                                    <div *ngIf="!isLoggedIn">
+                                    <div *ngIf="clerk.is_active">
                                         <td>
                                             <a id="button2" (click)="onDectivate(clerk.email)" type="button"> <span class="badge rounded-pill bg-warning text-white p-2">
                                 Inactivate
@@ -217,10 +217,6 @@
                     </form>
 
                 </div>
-                <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div> -->
             </div>
         </div>
     </div>
